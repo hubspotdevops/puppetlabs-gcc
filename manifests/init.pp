@@ -15,7 +15,9 @@ class gcc {
  
   include gcc::params
 
-  package { $gcc::params::gcc_package:
-    ensure => installed 
+  if !defined(Package[$gcc::params::gcc_package]) {
+    package { $gcc::params::gcc_package:
+      ensure => installed
+    }
   }
 }
